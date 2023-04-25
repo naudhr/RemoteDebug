@@ -25,6 +25,8 @@
 #ifndef WEBSOCKETSSERVER_H_
 #define WEBSOCKETSSERVER_H_
 
+#ifndef WEBSOCKET_DISABLED
+
 #include "WebSockets.h"
 
 #ifndef WEBSOCKETS_SERVER_CLIENT_MAX
@@ -207,6 +209,5 @@ private:
 
 };
 
-
-
+#endif /* WEBSOCKET_DISABLED */
 #endif /* WEBSOCKETSSERVER_H_ */

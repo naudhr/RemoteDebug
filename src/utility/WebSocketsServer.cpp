@@ -25,6 +25,8 @@
 #include "WebSockets.h"
 #include "WebSocketsServer.h"
 
+#ifndef WEBSOCKET_DISABLED
+
 WebSocketsServer::WebSocketsServer(uint16_t port, String origin, String protocol) {
     _port = port;
     _origin = origin;
@@ -869,5 +871,4 @@ void WebSocketsServer::handleHeader(WSclient_t * client, String * headerLine) {
     }
 }
 
-
-
+#endif /* WEBSOCKET_DISABLED */

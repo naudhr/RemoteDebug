@@ -25,6 +25,8 @@
 #ifndef WEBSOCKETS_H_
 #define WEBSOCKETS_H_
 
+#ifndef WEBSOCKET_DISABLED
+
 #ifdef STM32_DEVICE
 #include <application.h>
 #define bit(b) (1UL << (b)) // Taken directly from Arduino.h
@@ -309,4 +311,5 @@ class WebSockets {
 #ifndef UNUSED
 #define UNUSED(var) (void)(var)
 #endif
+#endif /* WEBSOCKET_DISABLED */
 #endif /* WEBSOCKETS_H_ */

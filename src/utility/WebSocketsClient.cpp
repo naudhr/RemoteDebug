@@ -25,6 +25,8 @@
 #include "WebSockets.h"
 #include "WebSocketsClient.h"
 
+#ifndef WEBSOCKET_DISABLED
+
 WebSocketsClient::WebSocketsClient() {
     _cbEvent = NULL;
     _client.num = 0;
@@ -759,5 +761,5 @@ void WebSocketsClient::asyncConnect() {
     }
 
 }
-
+#endif /* WEBSOCKET_DISABLED */
 #endif

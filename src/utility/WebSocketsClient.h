@@ -27,6 +27,7 @@
 
 #include "WebSockets.h"
 
+#ifndef WEBSOCKET_DISABLED
 class WebSocketsClient: private WebSockets {
     public:
 #ifdef __AVR__
@@ -132,5 +133,5 @@ class WebSocketsClient: private WebSockets {
         }
 
 };
-
+#endif /* WEBSOCKET_DISABLED */
 #endif /* WEBSOCKETSCLIENT_H_ */

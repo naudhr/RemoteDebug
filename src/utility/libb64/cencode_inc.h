@@ -8,6 +8,8 @@ For details, see http://sourceforge.net/projects/libb64
 #ifndef BASE64_CENCODE_H
 #define BASE64_CENCODE_H
 
+#ifndef WEBSOCKET_DISABLED
+
 typedef enum
 {
 	step_A, step_B, step_C
@@ -27,5 +29,7 @@ char base64_encode_value(char value_in);
 int base64_encode_block(const char* plaintext_in, int length_in, char* code_out, base64_encodestate* state_in);
 
 int base64_encode_blockend(char* code_out, base64_encodestate* state_in);
+
+#endif /* WEBSOCKET_DISABLED */
 
 #endif /* BASE64_CENCODE_H */

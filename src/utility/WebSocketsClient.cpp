@@ -703,7 +703,12 @@ void WebSocketsClient::connectedCb() {
     _client.tcp->setNoDelay(true);
 
     if(_client.isSSL && _fingerprint.length()) {
-        if(!_client.ssl->verify(_fingerprint.c_str(), _host.c_str())) {
+#if ARDUINO_ESP8266_MAJOR >= 3
+        if(!_client.ssl->setFingerprint(_fingerprint.c_str()))
+#else
+        if(!_client.ssl->verify(_fingerprint.c_str(), _host.c_str()))
+#endif
+        {
             DEBUG_WEBSOCKETS("[WS-Client] certificate mismatch\n");
             WebSockets::clientDisconnect(&_client, 1000);
             return;

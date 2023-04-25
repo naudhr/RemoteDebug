@@ -430,9 +430,12 @@ void RemoteDebug::handle() {
 		if (TelnetClient && TelnetClient.connected()) {
 
 			// Verify if the IP is same than actual conection
-
+#if ARDUINO_ESP8266_MAJOR >= 3
+			WiFiClient newClient = TelnetServer.accept();
+#else
 			WiFiClient newClient; // @suppress("Abstract class cannot be instantiated")
 			newClient = TelnetServer.available();
+#endif
 			String ip = newClient.remoteIP().toString();
 
 			if (ip == TelnetClient.remoteIP().toString()) {
@@ -455,8 +458,11 @@ void RemoteDebug::handle() {
 		} else {
 
 			// New TCP client
-
+#if ARDUINO_ESP8266_MAJOR >= 3
+			TelnetClient = TelnetServer.accept();
+#else
 			TelnetClient = TelnetServer.available();
+#endif
 
 			// Password request ? - 18/07/18
 
@@ -1788,7 +1794,7 @@ void RemoteDebug::setNoFilter() {
 
 // Silence
 
-void RemoteDebug::silence(boolean activate, boolean showMessage, boolean fromBreak, uint32_t timeout) {
+void RemoteDebug::silence(boolean activate, boolean showMessage, boolean /*fromBreak*/, uint32_t timeout) {
 
 	// Set silence and timeout
 
